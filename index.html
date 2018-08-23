@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+    <link rel='stylesheet' href='index.css' />
+
+
+</head>
+
+<body>
+
+
+    <!-- Landing Page-->
+    <div id='landing-page'>
+        <button id='music'>
+        </button>
+        <div class='container'>
+            <div class='row'>
+                <!-- Hangman title-->
+                <div class='col'>
+                    <div id='title'>
+                        <img src='https://occ-0-901-999.1.nflxso.net/art/87e01/5694568c69ef4be79164f46b967e7f4c1a387e01.png' id='hangman'>
+                    </div>
+                </div>
+            </div> <!-- row -->
+
+            <div class='row'>
+                <div class='col'>
+                    <button class='btn btn-danger' id='start-game'><h2>Start Game</h2></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lost end page-->
+    <div id='lost'>
+
+        <div class='container'>
+            <div class='row'>
+                <div class='col'>
+
+                </div>
+                <div class='col-sm-10'>
+                    <img class='img-fluid' src='https://i.ytimg.com/vi/AZZdyDo-Obg/maxresdefault.jpg' id='game-over-lost'>
+                </div>
+                <div class='col'>
+
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col'>
+                    <h1>You Lost!</h1>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col'>
+                    <button class='btn btn-primary' id='restart-game'> <h2>Restart Game</h2></button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- won end page-->
+    <div id='won'>
+        <img id='horse' src='https://i.pinimg.com/236x/f1/cd/d4/f1cdd43224f88f43bd09bd042d1220c6--silhouette-photography-horse-pictures.jpg'
+            id='game-over-lost'>
+
+        <div class='container'>
+            <div class='row'>
+                <div class='col'>
+                    <h1>You won!</h1>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col'>
+                    <button class='btn btn-primary' id='restart-game-won'> <h2>Restart Game</h2></button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Game!-->
+    <div id='game'>
+        <button id='music1'>
+        </button>
+        <!-- Background images that appear after guessing wrong!-->
+        <img id='splatter1' src='https://media.istockphoto.com/photos/abstract-watercolor-aquarelle-hand-drawn-colorful-shapes-art-red-picture-id474950386?k=6&m=474950386&s=612x612&w=0&h=ajeoTLAMgsyZdxY1YGy2m2-Rvoc1fmOSYzsLO7fmWi4='>
+        <img id='splatter2' src='https://media.istockphoto.com/photos/blood-splatter-isolated-clipping-path-picture-id450734485?k=6&m=450734485&s=612x612&w=0&h=QYe6YzUxfW42bQ9MQ5W1JkUEMkOfFWN2gWqHRZcVeWM='>
+        <img id='splatter3' src='https://media.istockphoto.com/photos/blood-splatter-on-white-background-picture-id185049916?k=6&m=185049916&s=612x612&w=0&h=zwpajCGHP53KrO9knj76wuP5rNGDB1Bl9Vi9LYyG5Ow='>
+        <img id='splatter4' src='https://i0.wp.com/www.splatsofblood.com/wp-content/uploads/2014/12/cropped-blood-splatter.png?fit=400%2C377'>
+
+        <!-- END GAME PICTURES -->
+
+
+
+        <div class='container-fluid'>
+            <div class='row'>
+                <!-- Hangman title-->
+                <div class='col'>
+                    <div id='title'>
+                        <img src='https://occ-0-901-999.1.nflxso.net/art/87e01/5694568c69ef4be79164f46b967e7f4c1a387e01.png' id='hangman'>
+                    </div>
+
+                </div>
+            </div> <!-- row -->
+
+            <div class='row'>
+
+                <div class='col-sm-12'>
+
+                    <ul id="letters"></ul>
+                    <br>
+                    <br>
+                    <p id='lives-left'>Lives left: <span id='lives'> 5</span></p>
+                    <br>
+
+
+                </div> <!-- col-sm-12-->
+            </div> <!-- row -->
+            <div class='row'>
+                <div class='col-sm-3'>
+                    <figure>
+
+                        <div id='noose'></div>
+                        <div id='head'></div>
+                        <div id='body'></div>
+                        <div id='arms'></div>
+                        <div id='legs'></div>
+
+
+
+                    </figure>
+                </div> <!-- col-md-3-->
+
+
+                <div class='col-sm-9'>
+                    <ul id='alphabets'></ul>
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container-fluid-->
+    </div>
+
+    <script>
+
+        var hangmanWords = ['hi', 'bye', 'together', 'seperate', 'looking', 'narnia']
+        var currentWord = hangmanWords[Math.floor(Math.random() * hangmanWords.length)]
+        var displayLives = document.getElementById('lives')
+        var lives = 5
+        var alphabet = "abcdefghijklmnopqrstuvwxyz"
+        var alphabets = document.getElementById('alphabets')
+        var usedLetters = [1];
+        var buttons = document.getElementsByTagName("button");
+        var letterCount = 0
+
+        var audioElement = document.createElement("audio");
+        audioElement.setAttribute("src", "intro.MP3");
+
+
+
+        // starts/stops music 
+        t = 0
+        document.getElementById('music').addEventListener('click', function () {
+            if (t === 0) {
+                audioElement.play()
+                audioElement.loop = true
+                t++
+            }
+            else {
+                audioElement.pause()
+
+                t--
+
+            }
+        })
+        document.getElementById('music1').addEventListener('click', function () {
+            if (t === 0) {
+                audioElement.play()
+                audioElement.loop = true
+                t++
+            }
+            else {
+                audioElement.pause()
+                t--
+
+            }
+        })
+
+        // Place CURRENT WORD in the HTML 
+        letters = document.getElementById("letters");
+        letters.innerHTML = '<h2 class="current-word">Current word:</h2>';
+
+        // Inserts the letters into the HTML
+        for (i = 0; i < currentWord.length; i++) {
+            letter = '<li class="letter" id = "letter' + i + '">' + currentWord.charAt(i).toUpperCase() + '</li>';
+            letters.insertAdjacentHTML('beforeend', letter);
+        }
+
+        // All of the letters as buttons
+        for (i = 0; i < alphabet.length; i++) {
+            letter1 = '<li class="alphabet">' + '<button ' + 'id = alphabet' + i + '>' + alphabet.charAt(i).toUpperCase() + '</button></li>';
+            alphabets.insertAdjacentHTML('beforeend', letter1);
+        }
+
+
+        for (let x = 0; x < 26; x++) {
+
+            // Sets EventListeners for all of the buttons to display letter
+            document.getElementById('alphabet' + x).addEventListener('click', function () {
+                // Gets all of the duplicate letters in the word
+                if (currentWord.indexOf(alphabet[x]) > -1) {
+                    for (i = 0; i < currentWord.length; i++) {
+                        if (currentWord[i] === alphabet[x]) {
+                            document.getElementById('letter' + i).style.color = 'black'
+                            letterCount++
+                        }
+
+                    }
+
+
+                }
+
+                else {
+                    // Gets the lives count and updates the HTML
+                    if (lives > 0) {
+                        lives--
+                        document.getElementById('lives').textContent = lives
+                        // adds the blood splatter and creates the hangman
+                        switch (lives) {
+                            case 4:
+                                document.getElementById('noose').style.display = 'block';
+                                document.getElementById('splatter1').style.display = 'block'
+                                break;
+                            case 3:
+                                document.getElementById('head').style.display = 'block'
+                                document.getElementById('splatter2').style.display = 'block'
+
+                                break;
+                            case 2:
+                                document.getElementById('body').style.display = 'block'
+                                document.getElementById('splatter3').style.display = 'block'
+
+                                break;
+                            case 1:
+                                document.getElementById('arms').style.display = 'block';
+                                document.getElementById('splatter4').style.display = 'block'
+
+                                break
+                            case 0:
+                                document.getElementById('legs').style.display = 'block';
+                                document.getElementById('splatter1').style.display = 'block'
+                                break;
+
+                        }
+
+                    }
+
+                }
+                if (letterCount === currentWord.length && lives > 0) {
+                    audioElement.pause()
+                    document.getElementById('won').style.display = 'block';
+                    document.getElementById('game').style.display = 'none';
+                }
+                // If the lives are 0, Game is over!
+                if (lives === 0) {
+                    audioElement.pause()
+                    document.getElementById('lost').style.display = 'block';
+                    document.getElementById('game').style.display = 'none';
+
+                }
+
+
+
+                // Button gets disabled after pressing.
+
+                document.getElementById('alphabet' + x).disabled = true;
+
+
+            })
+
+        }
+
+
+        // Landing page to game 
+
+        var startGame = document.getElementById('start-game')
+
+        startGame.addEventListener('click', function () {
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('game').style.display = 'block';
+        })
+
+
+
+        // Restart game with all initial features
+        var restartGame = document.getElementById('restart-game');
+
+        restartGame.addEventListener('click', function () {
+
+            currentWord = hangmanWords[Math.floor(Math.random() * hangmanWords.length)]
+
+            while (letters.firstChild) {
+                letters.removeChild(letters.firstChild);
+            }
+
+            for (let x = 0; x < 26; x++) {
+                document.getElementById('alphabet' + x).disabled = false;
+            }
+
+            for (i = 0; i < currentWord.length; i++) {
+                letter = '<li class="letter" id = "letter' + i + '">' + currentWord.charAt(i).toUpperCase() + '</li>';
+                letters.insertAdjacentHTML('beforeend', letter);
+            }
+
+            for (i = 0; i < 5; i++) {
+                switch (i) {
+                    case 4:
+                        document.getElementById('noose').style.display = 'none';
+                        document.getElementById('splatter1').style.display = 'none'
+                        break;
+                    case 3:
+                        document.getElementById('head').style.display = 'none'
+                        document.getElementById('splatter2').style.display = 'none'
+
+                        break;
+                    case 2:
+                        document.getElementById('body').style.display = 'none'
+                        document.getElementById('splatter3').style.display = 'none'
+
+                        break;
+                    case 1:
+                        document.getElementById('arms').style.display = 'none';
+                        document.getElementById('splatter4').style.display = 'none'
+
+                        break
+                    case 0:
+                        document.getElementById('legs').style.display = 'none';
+                        document.getElementById('splatter1').style.display = 'none'
+                        break;
+
+                }
+
+            }
+            lives = 5;
+            letterCount = 0;
+            document.getElementById('lives').textContent = lives;
+            document.getElementById('lost').style.display = 'none';
+            document.getElementById('game').style.display = 'block';
+        })
+
+        var restartGameWon = document.getElementById('restart-game-won');
+
+        restartGameWon.addEventListener('click', function () {
+
+            currentWord = hangmanWords[Math.floor(Math.random() * hangmanWords.length)]
+
+            while (letters.firstChild) {
+                letters.removeChild(letters.firstChild);
+            }
+
+            for (let x = 0; x < 26; x++) {
+                document.getElementById('alphabet' + x).disabled = false;
+            }
+
+            for (i = 0; i < currentWord.length; i++) {
+                letter = '<li class="letter" id = "letter' + i + '">' + currentWord.charAt(i).toUpperCase() + '</li>';
+                letters.insertAdjacentHTML('beforeend', letter);
+            }
+
+            for (i = 0; i < 5; i++) {
+                switch (i) {
+                    case 4:
+                        document.getElementById('noose').style.display = 'none';
+                        document.getElementById('splatter1').style.display = 'none'
+                        break;
+                    case 3:
+                        document.getElementById('head').style.display = 'none'
+                        document.getElementById('splatter2').style.display = 'none'
+
+                        break;
+                    case 2:
+                        document.getElementById('body').style.display = 'none'
+                        document.getElementById('splatter3').style.display = 'none'
+
+                        break;
+                    case 1:
+                        document.getElementById('arms').style.display = 'none';
+                        document.getElementById('splatter4').style.display = 'none'
+
+                        break
+                    case 0:
+                        document.getElementById('legs').style.display = 'none';
+                        document.getElementById('splatter1').style.display = 'none'
+                        break;
+
+                }
+
+            }
+            lives = 5;
+            letterCount = 0
+            document.getElementById('lives').textContent = lives;
+            document.getElementById('won').style.display = 'none';
+            document.getElementById('game').style.display = 'block';
+        })
+
+
+
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

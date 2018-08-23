@@ -1,0 +1,261 @@
+#hangman-word {
+    color: black;
+    text-decoration: underline;
+    letter-spacing: 10px;
+}
+
+.letter {
+    display: inline-block;
+    list-style: none;
+    width: 20px;
+    font-size:15px;
+    font-weight: bold;
+    margin: 0 5px;
+    border-bottom: 5px solid black;
+    text-align: center;
+    background-color: white;
+    color:white;}
+
+
+.alphabet {
+    display: inline-block;
+    list-style: none;
+    width: 50px;
+    height: 50px;
+    margin: 0 5px 10px;
+    text-align: center;
+    color: black;
+}
+
+
+#alphabets{
+    max-height: 20px;
+}
+
+button {
+    height:100%;
+    width:100%;
+}
+
+figure{
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+    border-top: solid 5px black;
+    position:relative;
+    border-left: solid 5px black;
+}
+
+#noose{
+    width:50%;
+    height: 20px;
+    border-right: solid 5px black;
+    display: none;
+    
+
+}
+
+#head{
+    width: 40px;
+    height:40px;
+    margin: 0 auto;
+    border-radius: 20px;
+    border: 5px solid black;
+    display: none;
+    
+
+}
+
+#body {
+    width: 50%;
+    height: 80px;
+    border-right: 5px solid black;
+    display: none;
+   
+
+}
+#legs{
+    width: 20%;
+    height: 40px;
+    border-top: 5px solid black;
+    margin: 0 auto;
+    border-left: 5px solid black;
+    border-right: 5px solid black;
+    display: none;
+   
+
+
+}
+
+#arms{
+    position: absolute;
+    width: 30%;
+    top: 80px;
+    border-bottom: 5px black solid;
+    left: 35%;
+    display: none;
+;
+}
+#hanging-man{
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 5;
+    position: absolute;
+    top:0;
+    left:0;
+    background-color: white;
+}
+
+#losing-game{
+    display:none;
+}
+
+#restart{
+    display:none;
+}
+
+#title{
+    width: 100%;
+    max-height: 300px;
+}
+#hangman{
+    width: 500px;
+    margin: 0 auto;
+    display:block;
+     height: 200px;
+
+}
+
+#letters{
+    margin: 0 auto;
+    padding-left: 0;
+    display: block;
+    text-align: center
+}
+
+#lives-left {
+    text-align: center;
+    font-weight: bold;
+    background-color: white;
+    width: 100px;
+    margin: 0 auto;
+}
+
+
+#splatter1{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 50%;
+    height:50%;
+    z-index: -1;
+    display:none;
+}
+
+#splatter2{
+    position: absolute;
+    top:0;
+    right:0;
+    width: 50%;
+    height:50%;
+    z-index: -1;
+    display:none;
+}
+
+#splatter3{
+    position: absolute;
+    bottom:0;
+    left:0;
+    width: 50%;
+    height:50%;
+    z-index: -1;
+    display:none;
+}
+
+#splatter4{
+    position: absolute;
+    bottom:0;
+    right:0;
+    width: 50%;
+    height:50%;
+    z-index: -1;
+    display:none;
+}
+
+#lost{
+    position: absolute;
+   top: 0;
+   left:0;
+   right:0;
+   bottom:0;
+    z-index: 5;
+    background-color: white;
+    display: none;
+}
+#won{
+    position: absolute;
+   top: 0;
+   left:0;
+   right:0;
+   bottom:0;
+    z-index: 5;
+    background-color: white;
+    display: none;
+}
+
+
+.white {
+    height:50%;
+    background-color: white
+
+}
+#game {
+    width: 100%;
+    height:100%;
+    display:none;
+
+}
+
+#start-game{
+    margin-top:50px;
+}
+
+#restart-game-lost{ 
+    margin-top: 50px;
+}
+
+h1{
+    text-align : center;
+}
+
+#horse{
+    margin: 0 auto;
+    display: block
+}
+
+#music {
+    position: absolute;
+    top:0;
+    left:0;
+    width: 60px;
+    height: 40px;
+    background-image: url('http://purepng.com/public/uploads/large/purepng.com-audio-speakeraudio-speakersaudiospeakerssound-speaker-1701528343705lhwgb.png');
+    background-size:  cover;
+    background-repeat: no-repeat;
+    z-index: 10;
+}
+
+#music1{
+    
+        position: absolute;
+        top:0;
+        left:0;
+        width: 60px;
+        height: 40px;
+        background-image: url('http://purepng.com/public/uploads/large/purepng.com-audio-speakeraudio-speakersaudiospeakerssound-speaker-1701528343705lhwgb.png');
+        background-size:  cover;
+        background-repeat: no-repeat;
+        z-index: 10;
+
+}
